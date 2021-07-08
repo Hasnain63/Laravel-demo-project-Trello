@@ -1,0 +1,717 @@
+    /*
+
+All grid code is placed in a 'supports' rule (feature query) at the bottom of the CSS (Line 320). 
+            
+The 'supports' rule will only run if your browser supports CSS grid.
+
+Flexbox is used as a fallback so that browsers which don't support grid will still recieve an identical layout.
+
+*/
+    /* Base styles */
+    
+     :root {
+        font-size: 10px;
+    }
+    
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        background-color: #0079bf !important;
+    }
+    
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font: inherit;
+        background: none;
+        border: none;
+        color: inherit;
+        padding: 0;
+        cursor: pointer;
+    }
+    
+     :focus {
+        outline-color: #fa0;
+    }
+    /* masthead */
+    
+    .masthead {
+        flex-basis: 4rem;
+        display: flex;
+        align-items: center;
+        padding: 0 0.8rem;
+        background-color: #0067a3;
+        box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
+    }
+    
+    .masthead .btn {
+        background-color: #4c94be;
+        border-radius: 0.3rem;
+        transition: background-color 150ms;
+    }
+    
+    .masthead .btn:hover {
+        background-color: #3385b5;
+    }
+    
+    .boards-menu {
+        display: flex;
+        flex-shrink: 0;
+    }
+    
+    .boards-btn {
+        flex-basis: 9rem;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+        margin-right: 0.8rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .boards-btn-icon {
+        font-size: 1.7rem;
+        padding-right: 1.2rem;
+    }
+    
+    .board-search {
+        flex-basis: 18rem;
+        position: relative;
+    }
+    
+    .board-search-input {
+        height: 3rem;
+        border: none;
+        border-radius: 0.3rem;
+        background-color: #4c94be;
+        width: 100%;
+        padding: 0 3rem 0 1rem;
+        color: #fff;
+    }
+    
+    .board-search-input:hover {
+        background-color: #66a4c8;
+    }
+    
+    .search-icon {
+        font-size: 1.5rem;
+        position: absolute;
+        top: 50%;
+        right: 0.8rem;
+        transform: translateY(-50%) rotate(90deg);
+        color: #fff;
+    }
+    
+    .logo {
+        flex: 1;
+        font-family: sans-serif;
+        font-size: 2rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0 2rem;
+        transition: color 150ms;
+        text-align: center;
+        white-space: nowrap;
+        cursor: pointer;
+    }
+    
+    .logo:hover {
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .logo-icon {
+        padding-right: 0.4rem;
+    }
+    
+    .user-settings {
+        display: flex;
+        height: 3rem;
+        color: #fff;
+    }
+    
+    .user-settings-btn {
+        font-size: 1.5rem;
+        width: 3rem;
+        margin-right: 0.8rem;
+    }
+    
+    .user-settings-btn:last-of-type {
+        margin-right: 0;
+    }
+    /* Board info bar */
+    
+    .board-info-bar {
+        flex-basis: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0.8rem 0;
+        padding: 0 1rem;
+        color: #f6f6f6;
+    }
+    
+    .board-controls {
+        display: flex;
+    }
+    
+    .board-controls .btn {
+        margin-right: 1rem;
+    }
+    
+    .board-controls .btn:last-of-type {
+        margin-right: 0;
+    }
+    
+    .board-info-bar .btn {
+        font-size: 1.4rem;
+        font-weight: 400;
+        transition: background-color 150ms;
+        padding: 0 0.6rem;
+        border-radius: 0.3rem;
+        height: 3rem;
+    }
+    
+    .board-info-bar .btn:hover {
+        background-color: #006aa8 !important;
+    }
+    
+    .private-btn-icon,
+    .menu-btn-icon {
+        padding-right: 0.6rem;
+        white-space: nowrap;
+    }
+    
+    .virtical-align {
+        background: #e2e4e6;
+        border-radius: 3px;
+        display: inline-block;
+        margin-right: 20px;
+        padding: 10px;
+        vertical-align: top;
+        width: 270px;
+    }
+    
+    .board-title h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        white-space: nowrap;
+        margin-top: 8px;
+        margin-bottom: 10px
+    }
+    
+    .board-title-drop {
+        margin-right: 11px;
+        font-size: 23px;
+        width: 140px;
+        background-color: #006aa8;
+    }
+    /* Lists */
+    
+    .lists-container::-webkit-scrollbar {
+        height: 2.4rem;
+    }
+    
+    .lists-container::-webkit-scrollbar-thumb {
+        background-color: #66a3c7 !important;
+        border: 0.8rem solid #0079bf;
+        border-top-width: 0;
+    }
+    
+    .lists-container {
+        display: flex;
+        align-items: start;
+        padding: 0 0.8rem 0.8rem;
+        overflow-x: auto;
+        height: calc(100vh - 8.6rem);
+    }
+    
+    .list {
+        flex: 0 0 27rem;
+        display: flex;
+        flex-direction: column;
+        background-color: #e2e4e6;
+        max-height: calc(100vh - 11.8rem);
+        border-radius: 0.3rem;
+        margin-right: 1rem;
+    }
+    
+    .list:last-of-type {
+        margin-right: 0;
+    }
+    
+    .list-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #333;
+        padding: 1rem;
+    }
+    
+    .list-items {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-content: start;
+        padding: 0 0.6rem 0.5rem;
+        overflow-y: auto;
+    }
+    
+    .list-items::-webkit-scrollbar {
+        width: 1.6rem;
+    }
+    
+    .list-items::-webkit-scrollbar-thumb {
+        background-color: #c4c9cc;
+        border-right: 0.6rem solid #e2e4e6;
+    }
+    
+    .list-items li {
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 1.3;
+        background-color: #fff;
+        padding: 0.65rem 0.6rem;
+        color: #4d4d4d;
+        border-bottom: 0.1rem solid #ccc;
+        border-radius: 0.3rem;
+        margin-bottom: 0.6rem;
+        word-wrap: break-word;
+        cursor: pointer;
+    }
+    
+    .list-items li:last-of-type {
+        margin-bottom: 0;
+    }
+    
+    .list-items li:hover {
+        background-color: #eee;
+    }
+    
+    .add-card-btn {
+        display: block;
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: #838c91;
+        padding: 1rem;
+        text-align: left;
+        cursor: pointer;
+    }
+    
+    .add-card-btn:hover {
+        background-color: #cdd2d4;
+        color: #4d4d4d;
+        text-decoration: underline;
+    }
+    
+    .add-list-btn {
+        flex: 0 0 27rem;
+        display: block;
+        font-size: 1.4rem;
+        font-weight: 400;
+        background-color: #006aa7 !important;
+        color: #a5cae0;
+        padding: 1rem;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        transition: background-color 150ms;
+        text-align: left;
+    }
+    
+    .add-list-btn:hover {
+        background-color: #005485 !important;
+    }
+    
+    .add-card-btn::after,
+    .add-list-btn::after {
+        content: "...";
+    }
+    /*
+
+The following rule will only run if your browser supports CSS grid.
+
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox styling. 
+
+*/
+    
+    @supports (display: grid) {
+        body {
+            display: grid;
+            grid-template-rows: 4rem 3rem auto;
+            grid-row-gap: 0.8rem;
+        }
+        .masthead {
+            display: flex;
+            grid-template-columns: auto 1fr auto;
+            grid-column-gap: 2rem;
+        }
+        .boards-menu {
+            display: grid;
+            grid-template-columns: 9rem 18rem;
+            grid-column-gap: 0.8rem;
+        }
+        .user-settings {
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            grid-column-gap: 0.8rem;
+        }
+        .board-controls {
+            display: grid;
+            grid-auto-flow: column;
+            grid-column-gap: 1rem;
+        }
+        .lists-container {
+            display: grid;
+            grid-auto-columns: 27rem;
+            grid-auto-flow: column;
+            grid-column-gap: 1rem;
+        }
+        .list {
+            display: grid;
+            grid-template-rows: auto minmax(auto, 1fr) auto;
+        }
+        .list-items {
+            display: grid;
+            grid-row-gap: 0.6rem;
+        }
+        .logo,
+        .list,
+        .list-items li,
+        .boards-btn,
+        .board-info-bar,
+        .board-controls .btn,
+        .user-settings-btn {
+            margin: 0;
+        }
+        .CreateButtton {
+            color: #5E6C84;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            margin: 4px 0 0 0;
+            padding: 0;
+        }
+        .list-header-target {
+            cursor: pointer;
+            inset: 44px;
+            height: 37PX;
+        }
+        .list-header-name-assist {
+            display: none;
+        }
+        .list-card-details {
+            overflow: hidden;
+            padding: 6px 8px 2px;
+            position: relative;
+            z-index: 10;
+        }
+        .list-card {
+            background-color: rgb(255, 255, 255);
+            border-radius: 3px;
+            box-shadow: rgb(9 30 66 / 25%) 0px 1px 0px;
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+            margin-bottom: 8px;
+            max-width: 300px;
+            min-height: 35px;
+            position: relative;
+            text-decoration: none;
+            z-index: 0;
+        }
+        .card-composer-container {
+            min-height: 38px;
+            max-height: 38px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .open-card-composer {
+            border-radius: 3px;
+            color: rgb(94, 108, 132);
+            display: block;
+            flex: 1 0 auto;
+            margin: 2px 0px 8px 8px;
+            padding: 4px 8px;
+            position: relative;
+            text-decoration: none;
+            user-select: none;
+        }
+        .nch-button.mod-compact,
+        input.mod-compact {
+            margin-bottom: 0px;
+            margin-top: 0px;
+            vertical-align: top;
+        }
+        .button {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: 400;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            padding: 0px 0px !important;
+            font-size: 14px;
+            line-height: 1.42857143;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .list-card-operation {
+            background-color: #c8d3da;
+            background-clip: padding-box;
+            background-origin: initial;
+            border-radius: 3px;
+            opacity: 3.8;
+            padding: 11px;
+            position: absolute;
+            right: -2px;
+            top: -3px;
+            z-index: 30;
+        }
+        .icon-sm {
+            height: 30px;
+            font-size: 12px;
+            line-height: 20px;
+            width: 10px;
+            color: #848888;
+        }
+        .card-detail-window {
+            min-height: 600px;
+        }
+        .window-header {
+            margin: 12px 40px 8px 56px;
+            min-height: 32px;
+            position: relative;
+            z-index: 1;
+        }
+        .window-title {
+            margin: 4px 0 0;
+            padding: 8px 0 0;
+        }
+        .window-title h2 {
+            margin-right: 4px;
+        }
+        .window-module-title h3 {
+            display: block;
+            width: 5px;
+            margin: 0px;
+            min-height: -1px;
+            min-width: 8px;
+        }
+        .content-modal {
+            width: 150%;
+        }
+        .window-sidebar {
+            float: right;
+            padding: 0 16px 8px 8px;
+            width: 82%;
+        }
+        .window-module {
+            clear: both;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .button-link {
+            background-color: rgba(9, 30, 66, .04);
+            box-shadow: none;
+            border: none;
+            border-radius: 3px;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 32px;
+            margin-top: 8px;
+            max-width: 300px;
+            overflow: hidden;
+            padding: 6px 12px;
+            position: relative;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            -webkit-user-select: none;
+            user-select: none;
+            white-space: nowrap;
+            transition-property: background-color, border-color, box-shadow;
+            transition-duration: 85ms;
+            transition-timing-function: ease;
+        }
+        link {
+            text-decoration: none;
+        }
+        #workspaces-preamble-board-header-button,
+        #workspaces-preamble-invite-button {
+            float: left;
+            background-color: #c5cccf;
+            width: 60px;
+            text-align: center
+        }
+        .invite {
+            color: #337ab7;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .content-invite {
+            width: 55%;
+            height: 236px;
+            margin-left: 40px;
+            margin-top: 50px;
+        }
+        .emailinput {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            width: 100%;
+        }
+        .content-addmember {
+            width: 55%;
+            margin-left: 112%;
+            margin-top: 44%
+        }
+        .content-addlables {
+            width: 55%;
+            margin-left: 112%;
+            margin-top: 45%
+        }
+        .content-addlablesnew {
+            width: 55%;
+            margin-left: 112%;
+            margin-top: 30%
+        }
+        .buttonLable {
+            width: 100%;
+            margin-bottom: 15px;
+            border: none;
+        }
+        .member {
+            background-color: #dfe1e6;
+            border-radius: 25em;
+            color: #172b4d;
+            cursor: pointer;
+            display: block;
+            float: left;
+            height: 22px;
+            margin: 2px 1px 4px -2px;
+            overflow: visible;
+            position: revert;
+            width: 67px;
+            text-align: center;
+            text-decoration: none;
+            -webkit-user-select: none;
+            user-select: none;
+            z-index: 0;
+        }
+        .u-clearfix:after {
+            clear: both;
+            content: "";
+            display: table;
+        }
+        .card-label {
+            background-color: #0d67f5;
+            border-radius: 4px;
+            color: rgb(65, 4, 4);
+            display: block;
+            margin-right: 6px;
+            max-width: 100%;
+            /* overflow: hidden; */
+            padding: 8px 5px;
+            margin-top: 5px;
+            position: relative;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* .icon-lg.light,
+        .icon-lg.light-hover:hover,
+        .icon-md.light,
+        .icon-md.light-hover:hover,
+        .icon-sm.light,
+        .icon-sm.light-hover:hover,
+        .light-hover:hover .icon-lg,
+        .light-hover:hover .icon-md,
+        .light-hover:hover .icon-sm {
+            color: #fff;
+            text-decoration: none;
+        }
+        .card-label-color-select-icon {
+            left: 14px;
+            position: absolute;
+            top: 6px;
+        }
+        .icon-lg,
+        .icon-md,
+        .icon-sm {
+            color: #42526e;
+        }
+        .icon-sm {
+            height: 20px;
+            font-size: 16px;
+            line-height: 20px;
+            width: 20px;
+        }
+        .icon-lg,
+        .icon-md,
+        .icon-sm {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: inline-block;
+            font-family: trellicons;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: bottom;
+        }
+        .card-label.mod-clickable {
+            cursor: pointer;
+        }
+    */
+        .card-label.mod-edit-label {
+            float: left;
+            height: 30px;
+            margin: 4px 11px 9px 0;
+            padding: 0;
+            width: 61px;
+        }
+        .card-label-green {
+            background-color: #61bd4f;
+        }
+        .card-label-yellow {
+            background-color: #f2d600;
+        }
+        .card-label-orange {
+            background-color: #ef8119;
+        }
+        .card-label-red {
+            background-color: #eb5a46;
+        }
+        .card-label-purple {
+            background-color: #c377e0;
+        }
+        .card-label-blue {
+            background-color: #0079bf;
+        }
+        .card-label-sky {
+            background-color: #00c2e0;
+        }
+        .card-label-lime {
+            background-color: #51e898;
+        }
+        .card-label-pink {
+            background-color: #ff78cb;
+        }
+        .card-label-black {
+            background-color: #344563;
+        }
+    }
