@@ -599,11 +599,12 @@ Remove or comment-out the code block below to see how the browser will fall-back
             cursor: pointer;
             display: block;
             float: left;
-            height: 22px;
+            height: fit-content;
             margin: 2px 1px 4px -2px;
             overflow: visible;
             position: revert;
-            width: 67px;
+            padding: 4px;
+            width: fit-content;
             text-align: center;
             text-decoration: none;
             -webkit-user-select: none;
@@ -631,52 +632,6 @@ Remove or comment-out the code block below to see how the browser will fall-back
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /* .icon-lg.light,
-        .icon-lg.light-hover:hover,
-        .icon-md.light,
-        .icon-md.light-hover:hover,
-        .icon-sm.light,
-        .icon-sm.light-hover:hover,
-        .light-hover:hover .icon-lg,
-        .light-hover:hover .icon-md,
-        .light-hover:hover .icon-sm {
-            color: #fff;
-            text-decoration: none;
-        }
-        .card-label-color-select-icon {
-            left: 14px;
-            position: absolute;
-            top: 6px;
-        }
-        .icon-lg,
-        .icon-md,
-        .icon-sm {
-            color: #42526e;
-        }
-        .icon-sm {
-            height: 20px;
-            font-size: 16px;
-            line-height: 20px;
-            width: 20px;
-        }
-        .icon-lg,
-        .icon-md,
-        .icon-sm {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            display: inline-block;
-            font-family: trellicons;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 1;
-            text-align: center;
-            text-decoration: none;
-            vertical-align: bottom;
-        }
-        .card-label.mod-clickable {
-            cursor: pointer;
-        }
-    */
         .card-label.mod-edit-label {
             float: left;
             height: 30px;

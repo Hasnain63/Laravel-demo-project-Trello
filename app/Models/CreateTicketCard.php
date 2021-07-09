@@ -17,4 +17,8 @@ class CreateTicketCard extends Model
     {
         return $this->belongsToMany('App\Models\User');
     }
+    public function lables()
+    {
+        return $this->belongsToMany('App\Models\createTicketLable');
+    }
 }

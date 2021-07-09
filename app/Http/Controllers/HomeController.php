@@ -59,6 +59,15 @@ class HomeController extends Controller
         $workspaceId = CreateWorkspace::where('user_id', $userid)->select('id')->first();
         if (isset($workspaceId)) {
             $workspaceId_id = $workspaceId->id;
+            // $lablesId = createTicketLable::select('id')->first();
+            // $currentmemberess = createTicketLable::with(['lables' => function ($q) use ($lablesId) {
+            //     $q->where('create_ticket_card_id', $lablesId);
+            // }])
+            //     ->whereHas('lables', function ($query) use ($lablesId) {
+            //         $query->where('create_ticket_card_id', $lablesId);
+            //     })->get()->pluck('lables');
+            // dd($currentmemberess);
+            // return false;
             $workspaceprojects = CreateWorkspaceProjects::where('workspace_id', $workspaceId_id)->first();
             $currentmembers = CreateWorkspaceProjects::with(['users' => function ($q) use ($workspaceprojects) {
                 $q->where('create_workspace_projects_id', $workspaceprojects->id);
@@ -79,7 +88,7 @@ class HomeController extends Controller
                 })->get()->pluck('users');
         }
         $tickets = CreateTicketTransection::orderBy('id', 'ASC')->get()->all();
-        $cards = CreateTicketCard::with('users')->get();
+        $cards = CreateTicketCard::with('users', 'lables')->get();
         $members = user::get()->all();
         $lables = createTicketLable::get()->all();
         return View('dashboard')->with(compact('workspace', 'lables', 'workspaceprojects', 'tickets', 'cards', 'currentmembers',  'members'));

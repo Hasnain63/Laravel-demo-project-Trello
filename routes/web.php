@@ -52,6 +52,7 @@ Route::post('addCardmembers', [CreateTicketCardController::class, 'addCardmember
 
 
 Route::post('/addCardLabels', [CreateTicketLableController::class, 'store'])->name('addCardLabels');
+Route::post('/addLabelToCard', [CreateTicketLableController::class, 'addLabelToCard'])->name('addLabelToCard');
 
 Route::get('search/keyword', [HomeController::class, 'search'])->name('search');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');

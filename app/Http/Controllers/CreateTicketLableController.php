@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CreateTicketCard;
 use App\Models\createTicketLable;
 use Illuminate\Http\Request;
 
@@ -86,5 +87,12 @@ class CreateTicketLableController extends Controller
     public function destroy(createTicketLable $createTicketLable)
     {
         //
+    }
+    public function  addLabelToCard(Request $request)
+    {
+        $ticketCard = CreateTicketCard::find($request->cardId1);
+
+        $ticketCard->lables()->attach($request->lables);
+        return response()->json(true);
     }
 }

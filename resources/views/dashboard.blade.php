@@ -41,10 +41,21 @@
                             </div>
                             @foreach($cards as $card)
                             @if($ticket->id == $card->ticketTransection_id)
-
                             <div class="list-card-details list-card  "
                                 onClick="openmodal('{{$card->title}}','{{$ticket->title}}' ,'{{$card->description}}' ,'{{$card->id}}' ,' {{$card->users}}')"
                                 id="showaCardData{{$card->id}}" data-target="#description">
+                                <div style="display: flex;">
+                                    @if(isset($card->lables))
+
+                                    @foreach($card->lables as $cardlable)
+                                    <span class="member {{$cardlable->color_name}} " style="margin-right: 10px">
+                                        {{$cardlable->title}}
+                                    </span>
+
+
+                                    @endforeach
+                                </div>
+                                @endif
                                 {{$card->title}}
                                 <!-- <span class="list-card-operation">
 
@@ -61,6 +72,7 @@
                                     @endforeach
                                 </div>
                                 @endif
+
                             </div>
 
                             @endif
@@ -224,17 +236,18 @@
                 <div class="modal-body">
                     <form id="lables">
                         @csrf
-                        <!-- <select class="js-example-basic-multiple" style="width: 100%;" name="lables[]"
-                            multiple="multiple"> -->
+                        cardId1
+                        <input type="hidden" id="cardId1" name="cardId1">
+                        <select class="js-example-basic" style="width: 100%;" name="lables">
 
-                        @foreach($lables as $lable)
-                        <option class="{{$lable->color_name}}"
-                            style="width: 100%; height: 30px; text-align:center; color:white; margin-top:5px;"
-                            value="{{$lable->id}}">
-                            {{$lable->title}}
-                        </option>
-                        @endforeach
-                        <!-- </select> -->
+                            @foreach($lables as $lable)
+                            <option class="{{$lable->color_name}}"
+                                style="width: 100%; height: 50px; text-align:center; color:white; margin-top:45px;"
+                                value="{{$lable->id}}">
+                                {{$lable->title}}
+                            </option>
+                            @endforeach
+                        </select>
                 </div>
 
                 <div class="modal-footer">
@@ -509,6 +522,7 @@
         $('#cardTitle').append(title);
         $('#ticketTitle').append(cardtitle);
         $('#cardId').val(cardid);
+        $('#cardId1').val(cardid);
         newCardMembers = JSON.parse(cardmembers);
         let html = "";
         if (cardmembers.length !== 0) {
@@ -553,8 +567,22 @@
         document.getElementById($(this).attr('id')).style.border = "2px solid";
         $('#lableColor').val($(this).attr('id'));
     })
+
+    $('body').on('submit', '#lables', function(e) {
+        e.preventDefault();
+        var fdata = new FormData(this);
+        $.ajax({
+            url: '/addLabelToCard',
+            type: 'POST',
+            data: fdata,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                location.reload();
+            }
+        });
+    });
     </script>
 
-    <!-- search member -->
 
     @endsection
