@@ -48,7 +48,7 @@
                                     @if(isset($card->lables))
 
                                     @foreach($card->lables as $cardlable)
-                                    <span class="member {{$cardlable->color_name}} " style="margin-right: 10px">
+                                    <span class="lable {{$cardlable->color_name}} " style="margin-right: 10px">
                                         {{$cardlable->title}}
                                     </span>
 
